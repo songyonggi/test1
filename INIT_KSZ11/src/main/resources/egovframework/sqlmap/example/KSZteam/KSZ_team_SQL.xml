@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="KSZteam">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="KSZteamsearchVO" type="egovframework.example.sample.service.KSZteamDefaultVO"/>
+
+	<resultMap id="KSZteam" class="egovframework.example.sample.service.KSZteamVO">
+		<result property="teamid" column="teamid"/>
+		<result property="teamname" column="teamname"/>
+		<result property="coachname" column="coachname"/>
+		<result property="arenasid" column="arenasid"/>
+		<result property="platerid" column="platerid"/>
+	</resultMap>
+
+	<insert id="KSZteamDAO.insertKSZteam">
+		<![CDATA[
+			INSERT INTO KSZTEAMS 
+				( 
+				   TEAM_ID
+				  , TEAM_NAME
+				  , COACH_NAME
+				  , ARENAS_ID
+				  , PLATER_ID )
+			VALUES ( 
+				   #teamid#
+				  , #teamname#
+				  , #coachname#
+				  , #arenasid#
+				  , #platerid# )
+		]]>
+	</insert>
+	
+	<update id="KSZteamDAO.updateKSZteam">
+		<![CDATA[
+			UPDATE KSZTEAMS
+			SET TEAM_ID=#teamid#
+				, TEAM_NAME=#teamname#
+				, COACH_NAME=#coachname#
+				, ARENAS_ID=#arenasid#
+				, PLATER_ID=#platerid#
+				
+			WHERE TEAM_ID=#teamid#
+		]]>
+	</update>
+	
+	<delete id="KSZteamDAO.deleteKSZteam">
+		<![CDATA[
+			DELETE FROM KSZTEAMS 
+			WHERE TEAM_ID=#teamid#
+		]]>
+	</delete>
+    
+    <select id="KSZteamDAO.selectKSZteam" resultMap="KSZteam">
+        <![CDATA[
+            SELECT
+                 TEAM_ID, TEAM_NAME, COACH_NAME, ARENAS_ID, PLATER_ID
+            FROM KSZTEAMS 
+            WHERE TEAM_ID=#teamid#
+        ]]>
+    </select>
+	
+	<select id="KSZteamDAO.selectKSZteamList" parameterClass="KSZteamsearchVO" resultClass="egovMap">
+
+			SELECT * FROM
+          (
+         SELECT
+            TEAM_ID, TEAM_NAME, COACH_NAME, ARENAS_ID, PLATER_ID
+            , ROW_NUMBER() OVER(ORDER BY ID DESC) AS ROW_NUM   
+         FROM INIT_ADMIN.KSZTEAMS
+         WHERE 1=1
+         <isEqual prepend="AND" property="searchCondition" compareValue="0">
+            TEAM_ID LIKE '%' || #searchKeyword# || '%'
+         </isEqual>
+         <isEqual prepend="AND" property="searchCondition" compareValue="1">
+            TEAM_NAME LIKE '%' || #searchKeyword# || '%'
+         </isEqual>
+         )
+         WHERE ROW_NUM BETWEEN (#firstIndex#+1) AND (#firstIndex#+#recordCountPerPage#)
+         ORDER BY ROW_NUM
+			
+			
+			<!-- 	LIMIT #recordCountPerPage# OFFSET #firstIndex#		-->
+ 	</select>
+	
+	<select id="KSZteamDAO.selectKSZteamListTotCnt" parameterClass="KSZteamsearchVO" resultClass="int">
+
+			SELECT COUNT(*) totcnt
+			FROM KSZTEAMS
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				TEAM_ID LIKE '%' || #searchKeyword# || '%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				TEAM_NAME LIKE '%' || #searchKeyword# || '%'
+			</isEqual>
+	</select>
+
+</sqlMap>

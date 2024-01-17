@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="KSZplayers">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="KSZplayerssearchVO" type="egovframework.example.sample.service.KSZplayersDefaultVO"/>
+
+	<resultMap id="KSZplayers" class="egovframework.example.sample.service.KSZplayersVO">
+		<result property="id" column="id"/>
+		<result property="playerid" column="playerid"/>
+		<result property="playername" column="playername"/>
+		<result property="position" column="position"/>
+		<result property="playernumber" column="playernumber"/>
+		<result property="school" column="school"/>
+		<result property="playerdate" column="playerdate"/>
+		<result property="playerheight" column="playerheight"/>
+	</resultMap>
+
+	<insert id="KSZplayersDAO.insertKSZplayers">
+		<![CDATA[
+			INSERT INTO KSZPLAYERS 
+				( ID
+				  , PLAYERID
+				  , PLAYERNAME
+				  , POSITION
+				  , PLAYERNUMBER
+				  , SCHOOL
+				  , PLAYERDATE
+				  , PLAYERHEIGHT )
+			VALUES ( #id#
+				  , #playerid#
+				  , #playername#
+				  , #position#
+				  , #playernumber#
+				  , #school# 
+				  , #playerdate#
+				  , #playerheight# )
+		]]>
+	</insert>
+	
+	<update id="KSZplayersDAO.updateKSZplayers">
+		<![CDATA[
+			UPDATE KSZPLAYERS
+			SET ID=#id#
+				  , PLAYERID=#playerid#
+				  , PLAYERNAME=#playername#
+				  , POSITION=#position#
+				  , PLAYERNUMBER=#playernumber#
+				  , SCHOOL=#school#
+				  , PLAYERDATE=#playerdate#
+				  , PLAYERHEIGHT=#playerheitht#
+			WHERE ID=#id#
+		]]>
+	</update>
+	
+	<delete id="KSZplayersDAO.deleteKSZplayers">
+		<![CDATA[
+			DELETE FROM KSZPLAYERS
+			WHERE ID=#id#
+		]]>
+	</delete>
+    
+    <select id="KSZplayersDAO.selectKSZplayers" resultMap="KSZplayers">
+        <![CDATA[
+            SELECT
+                ID, PLAYERID, PLAYERNAME, POSITION, PLAYERNUMBER, SCHOOL, PLAYERDATE, PLAYERHEIGHT
+            FROM KSZPLAYERS 
+            WHERE ID=#id#
+        ]]>
+    </select>
+	
+	<select id="KSZplayersDAO.selectKSZplayersList" parameterClass="KSZplayerssearchVO" resultClass="egovMap">
+
+			SELECT * FROM
+          (
+         SELECT
+            ID, PLAYERID, PLAYERNAME, POSITION, PLAYERNUMBER, SCHOOL, PLAYERDATE, PLAYERHEIGHT
+            , ROW_NUMBER() OVER(ORDER BY ID DESC) AS ROW_NUM   
+         FROM INIT_ADMIN.KSZPLAYERS
+         WHERE 1=1
+         <isEqual prepend="AND" property="searchCondition" compareValue="0">
+            ID LIKE '%' || #searchKeyword# || '%'
+         </isEqual>
+         <isEqual prepend="AND" property="searchCondition" compareValue="1">
+            PLAYERNAME LIKE '%' || #searchKeyword# || '%'
+         </isEqual>
+         )
+         WHERE ROW_NUM BETWEEN (#firstIndex#+1) AND (#firstIndex#+#recordCountPerPage#)
+         ORDER BY ROW_NUM
+			
+			
+			<!-- 	LIMIT #recordCountPerPage# OFFSET #firstIndex#		-->
+ 	</select>
+	
+	<select id="KSZplayersDAO.selectKSZplayersListTotCnt" parameterClass="KSZplayerssearchVO" resultClass="int">
+
+			SELECT COUNT(*) totcnt
+			FROM KSZPLAYERS
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				ID LIKE '%' || #searchKeyword# || '%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				PLAYERNAME LIKE '%' || #searchKeyword# || '%'
+			</isEqual>
+	</select>
+
+</sqlMap>

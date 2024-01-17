@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="KSZboard">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="KSZboardsearchVO" type="egovframework.example.sample.service.KSZboardDefaultVO"/>
+
+	<resultMap id="KSZboard" class="egovframework.example.sample.service.KSZboardVO">
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="description" column="description"/>
+		<result property="useYn" column="use_yn"/>
+		<result property="regUser" column="reg_user"/>
+		<result property="userNumber" column="user_number"/>
+	</resultMap>
+
+	<insert id="KSZboardDAO.insertKSZboard">
+		<![CDATA[
+			INSERT INTO KSZBOARD 
+				( ID
+				  , NAME
+				  , DESCRIPTION
+				  , USE_YN
+				  , REG_USER
+				  , USER_NUMBER )
+			VALUES ( #id#
+				  , #name#
+				  , #description#
+				  , #useYn#
+				  , #regUser# 
+				  , #userNumber# )
+		]]>
+	</insert>
+	
+	<update id="KSZboardDAO.updateKSZboard">
+		<![CDATA[
+			UPDATE KSZBOARD
+			SET ID=#id#
+				, NAME=#name#
+				, DESCRIPTION=#description#
+				, USE_YN=#useYn#
+				, USER_NUMBER=#userNumber#
+			WHERE ID=#id#
+		]]>
+	</update>
+	
+	<delete id="KSZboardDAO.deleteKSZboard">
+		<![CDATA[
+			DELETE FROM KSZBOARD 
+			WHERE ID=#id#
+		]]>
+	</delete>
+    
+    <select id="KSZboardDAO.selectKSZboard" resultMap="KSZboard">
+        <![CDATA[
+            SELECT
+                ID, NAME, DESCRIPTION, USE_YN, REG_USER, USER_NUMBER
+            FROM KSZBOARD 
+            WHERE ID=#id#
+        ]]>
+    </select>
+	
+	<select id="KSZboardDAO.selectKSZboardList" parameterClass="KSZboardsearchVO" resultClass="egovMap">
+
+			SELECT * FROM
+          (
+         SELECT
+            ID, NAME, DESCRIPTION, USE_YN, REG_USER, USER_NUMBER
+            , ROW_NUMBER() OVER(ORDER BY ID DESC) AS ROW_NUM   
+         FROM INIT_ADMIN.KSZBOARD
+         WHERE 1=1
+         <isEqual prepend="AND" property="searchCondition" compareValue="0">
+            ID LIKE '%' || #searchKeyword# || '%'
+         </isEqual>
+         <isEqual prepend="AND" property="searchCondition" compareValue="1">
+            NAME LIKE '%' || #searchKeyword# || '%'
+         </isEqual>
+         )
+         WHERE ROW_NUM BETWEEN (#firstIndex#+1) AND (#firstIndex#+#recordCountPerPage#)
+         ORDER BY ROW_NUM
+			
+			
+			<!-- 	LIMIT #recordCountPerPage# OFFSET #firstIndex#		-->
+ 	</select>
+	
+	<select id="KSZboardDAO.selectKSZboardListTotCnt" parameterClass="KSZboardsearchVO" resultClass="int">
+
+			SELECT COUNT(*) totcnt
+			FROM KSZBOARD
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				ID LIKE '%' || #searchKeyword# || '%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				NAME LIKE '%' || #searchKeyword# || '%'
+			</isEqual>
+	</select>
+
+</sqlMap>

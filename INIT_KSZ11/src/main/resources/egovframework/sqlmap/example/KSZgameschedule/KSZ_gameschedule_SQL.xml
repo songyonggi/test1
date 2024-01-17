@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="KSZgameschedule">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="gameschedulesearchVO" type="egovframework.example.sample.service.KSZgamescheduleDefaultVO"/>
+
+	<resultMap id="KSZgameschedule" class="egovframework.example.sample.service.KSZgamescheduleVO">
+		<result property="id" column="id"/>
+		<result property="gamescheduleid" column="gamescheduleid"/>
+		<result property="hometeamid" column="hometeamid"/>
+		<result property="awayteamid" column="awayteamid"/>
+		<result property="gamedatetime" column="gamedatetime"/>
+		<result property="arenaid" column="arenaid"/>
+		<result property="seasonnumber" column="seasonnumber"/>
+	</resultMap>
+
+	<insert id="KSZgamescheduleDAO.insertgameschedule">
+		<![CDATA[
+			INSERT INTO GAMESCHEDULE 
+				( ID
+				  , GAMESCHEDULEID
+				  , HOMETEAMID
+				  , AWAYTEAMID
+				  , GAMEDATETIME
+				  , ARENAID
+				  , SEASONNUMBER
+				   )
+			VALUES ( #id#
+				  , #gamescheduleid#
+				  , #hometeamid#
+				  , #awayteamid#
+				  , #gamedatetime#
+				  , #arenaid# 
+				  , #seasonnumber#
+				   )
+		]]>
+	</insert>
+	
+	<update id="KSZgamescheduleDAO.updategameschedule">
+		<![CDATA[
+			UPDATE GAMESCHEDULE
+			SET ID=#id#
+				  , GAMESCHEDULEID=#gamescheduleid#
+				  , HOMETEAMID=#hometeamid#
+				  , AWAYTEAMID=#awayteamid#
+				  , GAMEDATETIME=#gamedatetime#
+				  , ARENAID=#arenaid#
+				  , SEASONNUMBER=#seasonnumber#
+			WHERE ID=#id#
+		]]>
+	</update>
+	
+	<delete id="KSZgamescheduleDAO.deletegameschedule">
+		<![CDATA[
+			DELETE FROM GAMESCHEDULE
+			WHERE ID=#id#
+		]]>
+	</delete>
+    
+    <select id="KSZgamescheduleDAO.selectgameschedule" resultMap="KSZgameschedule">
+        <![CDATA[
+            SELECT
+                ID, GAMESCHEDULEID, HOMETEAMID, AWAYTEAMID, GAMEDATETIME, ARENAID, SEASONNUMBER
+            FROM GAMESCHEDULE 
+            WHERE ID=#id#
+        ]]>
+    </select>
+	
+	<select id="KSZgamescheduleDAO.selectKSZgamescheduleList" parameterClass="gameschedulesearchVO" resultClass="egovMap">
+
+			SELECT * FROM
+          (
+         SELECT
+            ID, GAMESCHEDULEID, HOMETEAMID, AWAYTEAMID, GAMEDATETIME, ARENAID, SEASONNUMBER
+            , ROW_NUMBER() OVER(ORDER BY ID DESC) AS ROW_NUM   
+         FROM INIT_ADMIN.GAMESCHEDULE
+         WHERE 1=1
+         <isEqual prepend="AND" property="searchCondition" compareValue="0">
+            ID LIKE '%' || #searchKeyword# || '%'
+         </isEqual>
+         <isEqual prepend="AND" property="searchCondition" compareValue="1">
+            GAMESCHEDULEID LIKE '%' || #searchKeyword# || '%'
+         </isEqual>
+         )
+         WHERE ROW_NUM BETWEEN (#firstIndex#+1) AND (#firstIndex#+#recordCountPerPage#)
+         ORDER BY ROW_NUM
+			
+			
+			<!-- 	LIMIT #recordCountPerPage# OFFSET #firstIndex#		-->
+ 	</select>
+	
+	<select id="KSZgamescheduleDAO.selectKSZgamescheduleListTotCnt" parameterClass="gameschedulesearchVO" resultClass="int">
+
+			SELECT COUNT(*) totcnt
+			FROM GAMESCHEDULE
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				ID LIKE '%' || #searchKeyword# || '%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				GAMESCHEDULEID LIKE '%' || #searchKeyword# || '%'
+			</isEqual>
+	</select>
+
+</sqlMap>

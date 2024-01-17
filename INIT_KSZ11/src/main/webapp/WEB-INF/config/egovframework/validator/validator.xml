@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE form-validation PUBLIC 
+    "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1//EN" 
+    "http://jakarta.apache.org/commons/dtds/validator_1_1.dtd">
+
+<form-validation>
+
+    <formset>
+        <form name="sampleVO">
+        	<field property="name" depends="required">
+        		<arg0 key="title.sample.name" />
+			</field>
+			<field property="description" depends="required">
+                <arg0 key="title.sample.description" />
+            </field>
+        	<field property="regUser" depends="required">
+        		<arg0 key="title.sample.regUser" />
+			</field>
+        </form>
+        
+        <form name="KSZboardVO">
+			<field property="name" depends="required">
+        		<arg0 key="title.sample.name" />
+			</field>
+			<field property="description" depends="required">
+                <arg0 key="title.sample.description" />
+            </field>
+        	<field property="regUser" depends="required">
+        		<arg0 key="title.sample.regUser" />
+			</field>
+			<field property="userNumber" depends="required">
+        		<arg0 key="title.sample.userNumber" />
+			</field> 
+        </form>
+        
+         <form name="KSZteamVO">
+         	<field property="teamid" depends="required">
+        		<arg0 key="title.sample.teamid" />
+        	</field>
+			<field property="teamname" depends="required">
+        		<arg0 key="title.sample.teamname" />
+			</field>
+			<field property="coachname" depends="required">
+                <arg0 key="title.sample.coachname" />
+            </field>
+            <field property="arenasid" depends="required">
+                <arg0 key="title.sample.arenasid" />
+            </field>
+            <field property="platerid" depends="required">
+                <arg0 key="title.sample.platerid" />
+            </field>
+        </form>
+        
+        <form name="KSZplayersVO">
+         	<field property="playerid" depends="required">
+        		<arg0 key="title.sample.playerid" />
+        	</field>
+			<field property="playername" depends="required">
+        		<arg0 key="title.sample.playername" />
+			</field>
+			<field property="position" depends="required">
+                <arg0 key="title.sample.position" />
+            </field>
+            <field property="playernumber" depends="required">
+        		<arg0 key="title.sample.playernumber" />
+        	</field>
+			<field property="school" depends="required">
+        		<arg0 key="title.sample.school" />
+			</field>
+			<field property="playerdate" depends="required">
+                <arg0 key="title.sample.playerdate" />
+            </field>
+            <field property="playerheight" depends="required">
+                <arg0 key="title.sample.playerheight" />
+            </field>
+        </form>
+        
+        <form name="KSZgamescheduleVO">
+         	<field property="gamescheduleid" depends="required">
+        		<arg0 key="title.gamescheduleid" />
+        	</field>
+			<field property="hometeamid" depends="required">
+        		<arg0 key="title.hometeamid" />
+			</field>
+			<field property="awayteamid" depends="required">
+                <arg0 key="title.awayteamid" />
+            </field>
+            <field property="gamedatetime" depends="required">
+        		<arg0 key="title.gamedatetime" />
+        	</field>
+			<field property="arenaid" depends="required">
+        		<arg0 key="title.arenaid" />
+			</field>
+			<field property="seasonnumber" depends="required">
+                <arg0 key="title.seasonnumber" />
+            </field>
+        </form>
+        
+    </formset>
+
+</form-validation>

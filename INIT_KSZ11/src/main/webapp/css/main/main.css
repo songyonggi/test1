@@ -1,0 +1,343 @@
+/* 모든 요소들은 default 마진, 패딩 제거 */
+* { margin: 0; padding: 0; }
+
+/* body 설정 */
+body {
+    padding: 30px;
+    background-color: #ffffff;
+}
+
+/* nav ul 스타일 */
+nav ul {
+    list-style: none;
+    border-top: 10px solid blue;
+    border-bottom: 10px solid blue;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 100px;
+}
+
+/* nav ul li 스타일 */
+nav ul li {
+    display: inline;
+    letter-spacing: .3em;
+    margin-left: 5em;
+}
+
+/* nav ul li a 스타일 */
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    line-height: 3em;
+    text-transform: uppercase;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* 왼쪽 사이드 메뉴 */
+aside#left {
+    float: left;
+    margin: 40px;
+ 
+}
+
+aside#left ul {
+    list-style: none;
+}
+
+aside#left ul li {
+    background-color: #0000ff;
+    padding: 10px 15px;
+    border-bottom: 1px solid black;
+}
+
+aside#left ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 30px;
+}
+
+aside#left ul li:hover {
+    background-color: #0080ff;
+}
+
+aside#left h1 {
+    font-size: 27px; /* h1의 글자 크기 */
+    color: #333; /* h1의 글자 색상 */
+    margin-bottom: 15px; /* h1과 다음 요소 간 간격 */
+}
+
+aside#left h3 {
+    font-size: 18px; /* h3의 글자 크기 */
+    color: #555; /* h3의 글자 색상 */
+    margin-bottom: 10px; /* h3와 다음 요소 간 간격 */
+}
+
+
+/* 가운데 본문 영역 */
+section#main {
+    margin: 0 auto;
+    width: 60%;
+    padding: 25px; /* main의 안쪽 여백 */
+    
+    /* 추가적인 스타일링을 원하실 경우 여기에 추가하세요 */
+}
+
+section#main h1 {
+    font-size: 30px; /* h1의 글자 크기 */
+    color: #333; /* h1의 글자 색상 */
+    margin-bottom: 20px; /* h1과 다음 요소 간 간격 */
+}
+
+/* 오른쪽 사이드 메뉴 */
+aside#right {
+    float: right;
+    padding: 10px;
+    width: 12em;
+}
+
+aside#right #shopcart {
+    margin-bottom: 30px;
+}
+
+aside#right #login input {
+    margin-bottom: 5px;
+}
+
+/* footer영역 */
+footer {
+    clear: both;
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    padding: 1em 0px;
+}
+
+/* 헤더 영역 */
+header.KSZ {
+	    width: 100%;
+	    min-width: 128rem;
+	    background-color: #fff;
+	    background-color: var(--white02);
+	    position: -webkit-sticky;
+	    position: sticky;
+	    top: 0;
+	    left: 0;
+	    z-index: 100;
+	}
+	
+	/* 유저 정보 */
+	header.KSZ .user-con {
+    	float: right;
+	}
+	
+	header.KSZ .user-con ul.user {
+    	list-style: none;
+    	font-size: 20px;
+    	margin-top: -90px;
+	}
+	
+	header.KSZ .user-con ul.user li {
+	    display: inline-block;
+    	margin-left: 10px;
+	}
+	
+	header.KSZ .user-con ul.user li a {
+	    text-decoration: none;
+	    font-size: 30px; 
+    	color: black;
+	}
+	
+	/* 카테고리 영역 */
+	header.KSZ .category-wrap {
+
+    margin-top: 0px;
+    /* 둥근 사각형 모양의 배경 */
+    background-color: #0080ff;
+    border-radius: 50px;
+    padding: 10px 15px;
+}
+
+ .category-wrap ul li a {
+            margin-right: 180px; /* 예시: 링크 텍스트 사이에 10px 여백 추가 */
+        }
+
+ .category-wrap {
+            padding-left: 800px; /* 왼쪽으로 20px 여백 추가 */
+        }
+ /* 링크 항목 가운데 정렬 */
+        .category-wrap ul {
+            text-align: center; /* 가운데 정렬 */
+        }
+        
+/* 안에 있는 글자를 흰색으로 설정 */
+header.KSZ .category-wrap h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: white; /* 글자 색상 */
+}
+
+header.KSZ .category-wrap ul {
+    list-style: none;
+}
+
+header.KSZ .category-wrap ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+header.KSZ .category-wrap ul li a {
+    text-decoration: none;
+    color: white; /* 글자 색상 */
+    font-size: 16px;
+}
+	
+	/* 네비게이션 영역 */
+	header.KSZ .nav-wrap {
+	    clear: both;
+	    margin-top: 20px;
+	}
+	
+	header.KSZ .nav-wrap .nav-con {
+	    list-style: none;
+	}
+	
+	header.KSZ .nav-wrap .nav-con h6 {
+	    font-size: 18px;
+	    margin-bottom: 10px;
+	}
+	
+	header.KSZ .nav-wrap .nav-con ul {
+	    list-style: none;
+	}
+	
+	header.KSZ .nav-wrap .nav-con ul li {
+	    margin-bottom: 5px;
+	}
+	
+	header.KSZ .nav-wrap .nav-con ul li a {
+	    text-decoration: none;
+	    color: black;
+	    font-size: 16px;
+	}
+	
+	header.KSZ .nav-wrap .nav-con ul li a:hover {
+	    text-decoration: underline;
+	}
+
+/* 기본 요소들에 대한 초기화 */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+    margin: 10px;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+}
+
+/* Body와 HTML 요소 초기화 */
+body,
+html {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: "Pretendard", "Noto Sans KR", "Roboto", -apple-system, BlinkMacSystemFont, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    font-size: 62.5%;
+    font-weight: 400;
+    color: #000;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1;
+}
+
+/* CSS Custom Properties */
+:root {
+    --pb50: #e3e6ed;
+    /* ... (기타 프로퍼티들) ... */
+}
+
+/* Scrollbar 스타일링 */
+::-webkit-scrollbar {
+    width: 0.4rem;
+    height: 0.9rem;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #e3e5e9;
+    border-radius: 1rem;
+    background-clip: padding-box;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+
+.team.rounded-box {
+    border: 2px solid #000;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    width: 1000px;
+    height: 2010px;
+}
+
+#teamInfoContainer {
+    width: 65%;
+    margin: 29px auto;
+    padding: 31px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    border: 1px solid #000;
+    font-size: 30px;
+}
+
+#teamSelectContainer {
+    width: 65%;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+   	font-size: 30px;
+}
+
+/* 코치 사진과 텍스트를 둥근 사각형으로 만들기 */
+.coach {
+    flex-direction: column;
+    
+}
+
+/* 코치 정보를 같은 줄에 정렬 */
+.coaches {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* 가운데 정렬로 설정 */
+    flex-wrap: wrap; /* 줄 바꿈 설정 */
+}
+
+/* 이미지 크기 조절 */
+.teamar img {
+    width: 900px; /* 이미지의 너비 설정 */
+    height: auto; /* 높이 자동 조정 */
+}
+
+.teamar {
+    text-align: center; /* 이미지를 가운데 정렬합니다 */
+}

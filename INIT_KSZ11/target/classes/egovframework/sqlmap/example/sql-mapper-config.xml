@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <typeAliases>
+		<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+		<typeAlias alias="searchVO" type="egovframework.example.sample.service.SampleDefaultVO"/>
+		<typeAlias alias="sampleVO" type="egovframework.example.sample.service.SampleVO"/>
+		<typeAlias alias="KSZboardsearchVO" type="egovframework.example.sample.service.KSZboardDefaultVO"/>
+		<typeAlias alias="KSZboardVO" type="egovframework.example.sample.service.KSZboardVO"/>
+		<typeAlias alias="tesmsearchVO" type="egovframework.example.sample.service.KSZteamDefaultVO"/>
+		<typeAlias alias="KSZtesmVO" type="egovframework.example.sample.service.KSZteamVO"/>
+		<typeAlias alias="KSZplayerssearchVO" type="egovframework.example.sample.service.KSZplayersDefaultVO"/>
+		<typeAlias alias="KSZplayersVO" type="egovframework.example.sample.service.KSZplayersVO"/>
+		<typeAlias alias="gameschedulesearchVO" type="egovframework.example.sample.service.KSZgamescheduleDefaultVO"/>
+		<typeAlias alias="KSZgamescheduleVO" type="egovframework.example.sample.service.KSZgamescheduleVO"/>
+    </typeAliases>
+</configuration>
