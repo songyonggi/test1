@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+C:\Users\INNIT-PC\workspace\INIT_KBLSZ2\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2900016954.index
+574483108.index
+3661885296.index
+1198472471.index
+360640458.index
+1051764902.index
